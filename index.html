@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>transaxtions llc — Media · Commerce · Ventures · AI</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0d0d0d;
+    --ink-muted: #555;
+    --ink-faint: #999;
+    --paper: #f7f6f2;
+    --white: #ffffff;
+    --accent: #c8a45a;       /* warm gold — transactions, value, legacy */
+    --accent-dark: #8f6e2e;
+    --steel: #1a1f2e;        /* deep navy for contrast sections */
+    --rule: rgba(0,0,0,0.10);
+  }
+
+  html { font-size: 16px; scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ─────────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 60px;
+    background: rgba(247,246,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700; font-size: 1rem; letter-spacing: 0.12em;
+    text-transform: lowercase; color: var(--ink); text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--ink-muted); text-decoration: none;
+    transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── HERO ────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 2.5rem 80px;
+    max-width: 1100px; margin: 0 auto;
+    position: relative;
+  }
+  .hero-eyebrow {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem;
+  }
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 700; line-height: 1.05; color: var(--ink);
+    max-width: 800px;
+  }
+  .hero-headline em {
+    font-style: italic; color: var(--accent);
+  }
+  .hero-sub {
+    margin-top: 2rem; font-size: 1.1rem; font-weight: 300;
+    color: var(--ink-muted); max-width: 560px; line-height: 1.7;
+  }
+  .hero-rule {
+    width: 60px; height: 2px; background: var(--accent);
+    margin: 2.5rem 0;
+  }
+  .hero-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .tag {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.4rem 0.9rem;
+    border: 1px solid var(--ink); color: var(--ink);
+    border-radius: 2px;
+  }
+  .tag.active { background: var(--ink); color: var(--paper); }
+
+  /* ── SECTION BASE ─────────────────────────────────────── */
+  section { padding: 100px 2.5rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 3rem;
+    padding-bottom: 1rem; border-bottom: 1px solid var(--rule);
+  }
+  .section-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700;
+    line-height: 1.2; margin-bottom: 1.5rem;
+  }
+
+  /* ── PILLARS ─────────────────────────────────────────── */
+  .pillars { background: var(--steel); color: var(--white); }
+  .pillars .section-label { color: var(--accent); border-color: rgba(255,255,255,0.1); }
+  .pillars-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0; margin-top: 3rem;
+  }
+  .pillar {
+    padding: 2.5rem 2rem; border-right: 1px solid rgba(255,255,255,0.08);
+    position: relative;
+  }
+  .pillar:last-child { border-right: none; }
+  .pillar-num {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+    color: var(--accent); margin-bottom: 1.2rem;
+  }
+  .pillar h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700; margin-bottom: 0.8rem; color: #fff;
+  }
+  .pillar p {
+    font-size: 0.85rem; line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+  }
+  .pillar .stealth-badge {
+    display: inline-block; margin-top: 1rem;
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; padding: 0.3rem 0.7rem;
+    background: var(--accent); color: var(--ink); border-radius: 2px;
+  }
+
+  /* ── VENTURES ─────────────────────────────────────────── */
+  .ventures-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5px; margin-top: 3rem;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  .venture-card {
+    background: var(--white); padding: 2rem;
+    transition: background 0.2s;
+  }
+  .venture-card:hover { background: #f0ece1; }
+  .venture-name {
+    font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem;
+    text-decoration: none; color: var(--ink);
+  }
+  .venture-name a { color: inherit; text-decoration: none; }
+  .venture-name a:hover { color: var(--accent-dark); }
+  .venture-desc { font-size: 0.82rem; color: var(--ink-muted); line-height: 1.6; }
+  .venture-tag {
+    margin-top: 0.8rem; font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-dark);
+  }
+
+  /* ── MEDIA / CONTENT ──────────────────────────────────── */
+  .media-section { background: #f0ece1; }
+  .media-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+    margin-top: 3rem;
+    align-items: start;
+  }
+  .media-card {
+    border-left: 3px solid var(--accent); padding-left: 1.5rem;
+  }
+  .media-card h3 {
+    font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .media-card p { font-size: 0.85rem; line-height: 1.7; color: var(--ink-muted); }
+  .media-card .platform-links {
+    margin-top: 0.8rem; display: flex; flex-wrap: wrap; gap: 0.5rem;
+  }
+  .platform-link {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 0.3rem 0.7rem;
+    background: var(--ink); color: var(--paper); border-radius: 2px;
+    text-decoration: none;
+  }
+
+  /* ── KOTHIRAJ PROJECT ─────────────────────────────────── */
+  .kothiraj-section {
+    background: var(--steel); color: #fff;
+    position: relative; overflow: hidden;
+  }
+  .kothiraj-section::before {
+    content: '';
+    position: absolute; top: -80px; right: -60px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(200,164,90,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .kothiraj-section .section-label { color: var(--accent); border-color: rgba(255,255,255,0.1); }
+  .kothiraj-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    margin-top: 3rem;
+  }
+  .kothiraj-inner .section-headline { color: #fff; }
+  .kothiraj-inner p {
+    font-size: 0.92rem; line-height: 1.8; color: rgba(255,255,255,0.65);
+    margin-bottom: 1rem;
+  }
+  .kothiraj-stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .stat-box {
+    padding: 1.5rem; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08); border-radius: 4px;
+  }
+  .stat-box .stat-num {
+    font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700;
+    color: var(--accent); line-height: 1;
+  }
+  .stat-box .stat-label {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.45); margin-top: 0.4rem; text-transform: uppercase;
+  }
+
+  /* ── AI TEASER ─────────────────────────────────────────── */
+  .ai-section {
+    background: var(--ink); color: var(--white);
+    text-align: center;
+  }
+  .ai-section .section-label { color: var(--accent); border-color: rgba(255,255,255,0.1); display: inline-block; }
+  .ai-section .section-headline { color: #fff; text-align: center; }
+  .ai-glow {
+    margin: 2.5rem auto 0;
+    width: 80px; height: 80px;
+    background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.2); opacity: 1; }
+  }
+  .ai-sub {
+    font-size: 1rem; color: rgba(255,255,255,0.5);
+    margin-top: 1.5rem; max-width: 480px; margin-left: auto; margin-right: auto;
+    line-height: 1.7;
+  }
+  .ai-coming { 
+    display: inline-block; margin-top: 2rem;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; padding: 0.6rem 1.5rem;
+    border: 1px solid var(--accent); color: var(--accent); border-radius: 2px;
+  }
+
+  /* ── FOOTER ────────────────────────────────────────────── */
+  footer {
+    background: var(--steel); color: rgba(255,255,255,0.45);
+    padding: 3rem 2.5rem;
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.9rem;
+    letter-spacing: 0.12em; text-transform: lowercase; color: #fff;
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--accent); }
+  .footer-meta { font-size: 0.75rem; line-height: 1.6; }
+  .footer-tagline { font-size: 0.72rem; font-style: italic; color: rgba(255,255,255,0.3); }
+
+  /* ── RESPONSIVE ─────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    .media-grid, .kothiraj-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .pillars-grid { grid-template-columns: 1fr 1fr; }
+    .pillar { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .nav-links { display: none; }
+    .hero { padding-top: 100px; }
+    #contact .container > div { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">transaxtions<span>.</span>llc</a>
+  <ul class="nav-links">
+    <li><a href="#ventures">Ventures</a></li>
+    <li><a href="#media">Media</a></li>
+    <li><a href="#kothiraj">Projects</a></li>
+    <li><a href="#ai">AI</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <p class="hero-eyebrow">Pleasanton, CA · Est. transaxtions llc</p>
+    <h1 class="hero-headline">We build,<br>invest, <em>create.</em></h1>
+    <p class="hero-sub">Media production, early-stage venture building, e-commerce, and agentic AI systems. A quiet company with a long view.</p>
+    <div class="hero-rule"></div>
+    <div class="hero-tags">
+      <span class="tag">Media</span>
+      <span class="tag">Ventures</span>
+      <span class="tag">E-Commerce</span>
+      <span class="tag">Original Content</span>
+      <span class="tag active">Agentic AI ✦ Stealth</span>
+    </div>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section class="pillars" id="about">
+  <div class="container">
+    <p class="section-label">What we do</p>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <p class="pillar-num">01</p>
+        <h3>Media &amp; Content</h3>
+        <p>Original video series, Instagram reels, podcast episodes, and documentary-style storytelling — produced end-to-end under the transaxtions llc banner.</p>
+      </div>
+      <div class="pillar">
+        <p class="pillar-num">02</p>
+        <h3>Venture &amp; Infra</h3>
+        <p>Early-stage investment with hands-on infra support — cloud architecture, technical co-founding, and capital-raising guidance for portfolio companies.</p>
+      </div>
+      <div class="pillar">
+        <p class="pillar-num">03</p>
+        <h3>E-Commerce</h3>
+        <p>Operating and incubating commerce properties across verticals, with a focus on niche consumer markets and lean digital storefronts.</p>
+      </div>
+      <div class="pillar">
+        <p class="pillar-num">04</p>
+        <h3>Agentic AI</h3>
+        <p>Autonomous AI systems in active development — orchestrating multi-step workflows across domains. Our most ambitious chapter yet.</p>
+        <span class="stealth-badge">Stealth · Coming Soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENTURES -->
+<section id="ventures">
+  <div class="container">
+    <p class="section-label">Portfolio</p>
+    <h2 class="section-headline">Companies we've built<br>and backed.</h2>
+    <div class="ventures-grid">
+      <div class="venture-card">
+        <div class="venture-name"><a href="http://eskindisplays.com" target="_blank">e-skin Displays</a></div>
+        <p class="venture-desc">Next-generation flexible display technology — wearable, embedded, ambient.</p>
+        <p class="venture-tag">Deep Tech · Hardware</p>
+      </div>
+      <div class="venture-card">
+        <div class="venture-name"><a href="http://mobivdeo.com" target="_blank">mobivdeo</a></div>
+        <p class="venture-desc">Mobile-first video platform built for the emerging markets consumer.</p>
+        <p class="venture-tag">Media Tech · Mobile</p>
+      </div>
+      <div class="venture-card">
+        <div class="venture-name"><a href="http://ntangle.com" target="_blank">ntangle labs</a></div>
+        <p class="venture-desc">Untangling complexity in distributed systems and real-time data pipelines.</p>
+        <p class="venture-tag">Infrastructure · B2B</p>
+      </div>
+      <div class="venture-card">
+        <div class="venture-name">InAKrowd</div>
+        <p class="venture-desc">Community-powered micro-experiences connecting creators with live audiences.</p>
+        <p class="venture-tag">Consumer · Social</p>
+      </div>
+      <div class="venture-card">
+        <div class="venture-name"><a href="https://www.youtube.com/channel/UC1k83fTZ0f1I1RTyFkJ6BIg" target="_blank">StreetCafe</a></div>
+        <p class="venture-desc">Original short-form content series exploring the surprising origins of everyday things.</p>
+        <p class="venture-tag">Original Content · YouTube</p>
+      </div>
+      <div class="venture-card" style="background:#faf8f2;">
+        <div class="venture-name" style="color:var(--ink-muted)">More in stealth</div>
+        <p class="venture-desc">Several ventures in pre-launch and stealth stages across AI, commerce, and infrastructure.</p>
+        <p class="venture-tag">Undisclosed</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA -->
+<section class="media-section" id="media">
+  <div class="container">
+    <p class="section-label">Media Production</p>
+    <h2 class="section-headline">Storytelling across<br>every platform.</h2>
+    <div class="media-grid">
+      <div class="media-card">
+        <h3>Instagram Reels &amp; Short-Form</h3>
+        <p>Cultural, archaeological, and documentary reels produced for TimeLensPodcast and partner projects — including the viral Kothi Raj climbing challenge reel. Follow for field dispatches and cultural stories.</p>
+        <div class="platform-links">
+          <a class="platform-link" href="https://www.instagram.com/timelenspodcast" target="_blank">@timelenspodcast</a>
+          <a class="platform-link" href="https://www.youtube.com/playlist?list=PL3U1OyKcPyshFkFRZz9y3sXWnXHN2Nvkl" target="_blank">YouTube</a>
+          <a class="platform-link" href="https://music.amazon.com/podcasts/39e72bf3-7e8e-4282-84cf-a745b1f3b97e/nagendra-nagarajayya-and-akul-nagendras-time-lens" target="_blank">Amazon Music</a>
+        </div>
+      </div>
+      <div class="media-card">
+        <h3>Time<em style="font-style:italic;color:var(--accent-dark)">Lens</em>Podcast</h3>
+        <p>Field investigations into ancient India — tracing Mahabharata, Ramayana, and Harappan history through site visits, inscriptions, and oral tradition. Produced with transaxtions llc.</p>
+        <div class="platform-links">
+          <a class="platform-link" href="https://timelenspodcast.com" target="_blank">Website</a>
+          <a class="platform-link" href="https://open.spotify.com/show/1ZbY0Ry8Uk4Wjx3emwATqJ" target="_blank">Spotify</a>
+          <a class="platform-link" href="https://podcasts.apple.com/us/podcast/nagendra-nagarajayya-and-akul-nagendras-time-lens/id1826416783" target="_blank">Apple</a>
+          <a class="platform-link" href="https://timelenspodcast.blogspot.com" target="_blank">Blog</a>
+          <a class="platform-link" href="https://www.instagram.com/timelenspodcast" target="_blank">@timelenspodcast</a>
+        </div>
+      </div>
+      <div class="media-card">
+        <h3>StreetCafe Original Series</h3>
+        <p>Short documentary episodes on the hidden histories behind everyday objects and customs — chopsticks, wedding rings, the third eye, and beyond.</p>
+        <div class="platform-links">
+          <a class="platform-link" href="https://www.youtube.com/channel/UC1k83fTZ0f1I1RTyFkJ6BIg" target="_blank">Watch on YouTube</a>
+        </div>
+      </div>
+      <div class="media-card">
+        <h3>Documentary Projects</h3>
+        <p>Feature-length and episodic documentary production for cultural, sporting, and heritage subjects. Current flagship: the Kothi Raj El Capitan Project.</p>
+        <div class="platform-links">
+          <a class="platform-link" href="#kothiraj">See Flagship Project ↓</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KOTHI RAJ PROJECT -->
+<section class="kothiraj-section" id="kothiraj">
+  <div class="container">
+    <p class="section-label">Flagship Project · 2025–2026</p>
+    <div class="kothiraj-inner">
+      <div>
+        <h2 class="section-headline">The Kothi Raj<br>El Capitan Project</h2>
+        <p>transaxtions llc is the U.S. petitioning and production entity for the Kothi Raj El Capitan Project — bringing Jyothi Raj E. ("Kothi Raj"), the Spiderman of Karnataka, to attempt The Nose route on El Capitan in Yosemite National Park.</p>
+        <p>A self-taught free solo climber who rose from extraordinary hardship in Chitradurga, Kothi Raj carries a tradition of superhuman climbing rooted in the Anjaneya heritage of Karnataka. His story is being developed into a full documentary, with a U.S. cultural tour visiting Indian diaspora communities nationwide.</p>
+        <p>transaxtions llc has formally extended an invitation to Kothi Raj to visit the United States for this historic attempt and cultural tour — the first step in bringing this extraordinary story to American audiences.</p>
+        <div style="margin-top:1.5rem; display:flex; flex-wrap:wrap; gap:0.6rem;">
+          <a href="https://www.instagram.com/timelenspodcast" target="_blank" style="font-size:0.68rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:0.45rem 1rem; border:1px solid var(--accent); color:var(--accent); border-radius:2px; text-decoration:none;">Watch the Challenge Reel ↗</a>
+          <a href="#media" style="font-size:0.68rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; padding:0.45rem 1rem; border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.5); border-radius:2px; text-decoration:none;">TimeLensPodcast Episodes ↗</a>
+        </div>
+        <p style="font-size:0.72rem; color:rgba(255,255,255,0.25); margin-top:1.2rem;">Production · Cultural Exchange · Documentary · Diaspora Outreach</p>
+      </div>
+      <div class="kothiraj-stats">
+        <div class="stat-box">
+          <div class="stat-num">3000+</div>
+          <div class="stat-label">ft vertical · El Capitan</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">1st</div>
+          <div class="stat-label">Indian to attempt The Nose</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">15+</div>
+          <div class="stat-label">Competitive climbing certificates</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Years of free solo tradition</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI TEASER -->
+<section class="ai-section" id="ai">
+  <div class="container">
+    <p class="section-label">What's next</p>
+    <h2 class="section-headline">Agentic AI.<br>In stealth.</h2>
+    <div class="ai-glow"></div>
+    <p class="ai-sub">We've been quietly building autonomous AI systems that orchestrate complex multi-step workflows — across commerce, media, and operations. Coming soon.</p>
+    <span class="ai-coming">Launching 2025 ·  Stay tuned</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--paper); padding:100px 2.5rem;">
+  <div class="container">
+    <p class="section-label">Get in touch</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start;">
+      <div>
+        <h2 class="section-headline">Let's talk.</h2>
+        <p style="font-size:0.95rem; color:var(--ink-muted); line-height:1.8; margin-top:1rem;">
+          Whether you're a partner, investor, journalist, or someone who wants to collaborate on something meaningful — we'd like to hear from you.
+        </p>
+        <p style="font-size:0.85rem; color:var(--ink-faint); line-height:1.8; margin-top:1rem;">
+          Pleasanton, CA 94588<br>
+          transaxtions llc
+        </p>
+      </div>
+      <div>
+        <form
+          action="https://formspree.io/f/mlgkykle"
+          method="POST"
+          id="contact-form"
+        >
+          <div style="margin-bottom:1.2rem;">
+            <label style="display:block; font-size:0.68rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.5rem;">Your Name</label>
+            <input type="text" name="name" required
+              style="width:100%; padding:0.75rem 1rem; border:1px solid var(--rule); background:var(--white); font-family:inherit; font-size:0.9rem; color:var(--ink); outline:none; border-radius:2px; transition:border-color 0.2s;"
+              onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--rule)'"
+              placeholder="Full name">
+          </div>
+          <div style="margin-bottom:1.2rem;">
+            <label style="display:block; font-size:0.68rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.5rem;">Email</label>
+            <input type="email" name="email" required
+              style="width:100%; padding:0.75rem 1rem; border:1px solid var(--rule); background:var(--white); font-family:inherit; font-size:0.9rem; color:var(--ink); outline:none; border-radius:2px; transition:border-color 0.2s;"
+              onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--rule)'"
+              placeholder="you@example.com">
+          </div>
+          <div style="margin-bottom:1.5rem;">
+            <label style="display:block; font-size:0.68rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-muted); margin-bottom:0.5rem;">Message</label>
+            <textarea name="message" required rows="5"
+              style="width:100%; padding:0.75rem 1rem; border:1px solid var(--rule); background:var(--white); font-family:inherit; font-size:0.9rem; color:var(--ink); outline:none; border-radius:2px; resize:vertical; transition:border-color 0.2s;"
+              onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--rule)'"
+              placeholder="Tell us what you're working on..."></textarea>
+          </div>
+          <button type="submit"
+            style="padding:0.75rem 2rem; background:var(--ink); color:var(--paper); font-family:inherit; font-size:0.78rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; border:none; border-radius:2px; cursor:pointer; transition:background 0.2s;"
+            onmouseover="this.style.background='var(--accent-dark)'" onmouseout="this.style.background='var(--ink)'">
+            Send Message
+          </button>
+          <p id="form-status" style="margin-top:1rem; font-size:0.8rem; color:var(--accent-dark); display:none;"></p>
+        </form>
+        <script>
+          const form = document.getElementById('contact-form');
+          const status = document.getElementById('form-status');
+          form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = new FormData(form);
+            const res = await fetch(form.action, { method:'POST', body:data, headers:{'Accept':'application/json'} });
+            if (res.ok) {
+              status.textContent = 'Message sent. We\'ll be in touch.';
+              status.style.display = 'block';
+              form.reset();
+            } else {
+              status.textContent = 'Something went wrong. Please try again.';
+              status.style.display = 'block';
+            }
+          });
+        </script>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a class="footer-logo" href="#">transaxtions<span>.</span>llc</a>
+      <p class="footer-tagline" style="margin-top:0.4rem;">Innovation everyday.</p>
+    </div>
+    <div class="footer-meta">
+      Pleasanton, CA 94588
+    </div>
+    <div class="footer-meta" style="text-align:right;">
+      Media · Ventures · Commerce · AI<br>
+      © transaxtions llc. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
