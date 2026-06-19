@@ -28,22 +28,27 @@
     background: var(--paper);
     color: var(--ink);
     -webkit-font-smoothing: antialiased;
+    overflow-wrap: break-word;
+    word-break: normal;
+    overflow-x: hidden;
   }
+
+  h1, h2, h3, p, a, span, div, label, button { overflow-wrap: break-word; }
 
   /* ── NAV ─────────────────────────────────────────────── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 2.5rem;
-    height: 60px;
+    height: 110px;
     background: rgba(247,246,242,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--rule);
   }
   .nav-logo {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700; font-size: 1rem; letter-spacing: 0.12em;
-    text-transform: lowercase; color: var(--ink); text-decoration: none;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: clamp(2.2rem, 4.2vw, 3.5rem); letter-spacing: 0.01em;
+    line-height: 1; text-transform: lowercase; color: var(--ink); text-decoration: none;
   }
   .nav-logo span { color: var(--accent); }
   .nav-links { display: flex; gap: 2rem; list-style: none; }
@@ -269,16 +274,47 @@
   }
   .footer-logo span { color: var(--accent); }
   .footer-meta { font-size: 0.75rem; line-height: 1.6; }
+  .footer-meta-right { text-align: right; }
   .footer-tagline { font-size: 0.72rem; font-style: italic; color: rgba(255,255,255,0.3); }
 
   /* ── RESPONSIVE ─────────────────────────────────────────── */
   @media (max-width: 768px) {
+    nav { padding: 0 1.25rem; }
+    .hero { padding: 130px 1.25rem 60px; }
+    section { padding: 64px 1.25rem; }
     .media-grid, .kothiraj-inner { grid-template-columns: 1fr; gap: 2rem; }
     .pillars-grid { grid-template-columns: 1fr 1fr; }
-    .pillar { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .pillar { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 2rem 1.5rem; }
     .nav-links { display: none; }
-    .hero { padding-top: 100px; }
     #contact .container > div { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+    .footer-inner { flex-direction: column; align-items: flex-start; text-align: left; }
+    .footer-meta-right { text-align: left; }
+    .hero-headline { max-width: 100%; }
+    .hero-sub { max-width: 100%; }
+  }
+
+  @media (max-width: 480px) {
+    nav { padding: 0 1rem; height: 84px; }
+    .nav-logo { font-size: clamp(1.6rem, 8vw, 2.2rem); }
+    .hero { padding: 104px 1rem 50px; }
+    section { padding: 56px 1rem; }
+    .hero-headline { font-size: clamp(2.2rem, 9vw, 3.2rem); }
+    .hero-sub { font-size: 1rem; }
+    .section-headline { font-size: clamp(1.5rem, 6vw, 2rem); }
+    .section-label { letter-spacing: 0.12em; margin-bottom: 2rem; }
+    .hero-eyebrow { letter-spacing: 0.1em; font-size: 0.68rem; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .pillar { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .ventures-grid { grid-template-columns: 1fr; }
+    .venture-card { padding: 1.5rem; }
+    .tag { font-size: 0.65rem; padding: 0.35rem 0.7rem; letter-spacing: 0.06em; }
+    .kothiraj-stats { grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .stat-box { padding: 1rem; }
+    .stat-box .stat-num { font-size: 1.5rem; }
+    .stat-box .stat-label { font-size: 0.65rem; letter-spacing: 0.04em; }
+    .platform-link { font-size: 0.62rem; letter-spacing: 0.06em; padding: 0.3rem 0.6rem; }
+    .media-card { padding-left: 1rem; }
+    .ai-coming { font-size: 0.65rem; letter-spacing: 0.12em; padding: 0.55rem 1.2rem; }
   }
 </style>
 </head>
@@ -477,7 +513,7 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contact" style="background:var(--paper); padding:100px 2.5rem;">
+<section id="contact" class="contact-section" style="background:var(--paper);">
   <div class="container">
     <p class="section-label">Get in touch</p>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start;">
@@ -557,7 +593,7 @@
     <div class="footer-meta">
       Pleasanton, CA 94588
     </div>
-    <div class="footer-meta" style="text-align:right;">
+    <div class="footer-meta footer-meta-right">
       Media · Ventures · Commerce · AI<br>
       © transaxtions llc. All rights reserved.
     </div>
